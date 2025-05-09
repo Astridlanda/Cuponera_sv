@@ -1,0 +1,204 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Encabezado */
+header {
+    background-color: #215082;
+    padding: 15px;
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #1867bc;
+}
+
+nav a:hover {
+    background-color: #0056b3;
+}
+
+/* Secciones */
+h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+section {
+    margin: 20px auto;
+    width: 85%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Formularios */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Botones */
+button, .btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    border-radius: 5px;
+}
+
+button:hover, .btn:hover {
+    background-color: #218838;
+}
+
+/* Estilos para las ofertas */
+.ofertas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.oferta {
+    width: 280px;
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.2s ease-in-out;
+}
+
+.oferta:hover {
+    transform: scale(1.05);
+}
+
+.oferta h3 {
+    color: #343a40;
+    font-size: 18px;
+}
+
+.oferta p {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.oferta a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.oferta a:hover {
+    background-color: #063568;
+}
+
+/* Panel de administración */
+.panel {
+    margin: 20px auto;
+    width: 85%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Mensajes de éxito y error */
+.mensaje-exito {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.mensaje-error {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Pie de página */
+footer {
+    margin-top: 40px;
+    padding: 15px;
+    background-color: #343a40;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}
