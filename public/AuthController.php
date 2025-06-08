@@ -4,7 +4,6 @@ require_once 'Usuario.php';
 
 $usuarioModel = new Usuario();
 
-// Inicio de sesión
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     $usuario = $_POST['usuario'];
     $contraseña = $_POST['contraseña'];
@@ -12,12 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     $user = $usuarioModel->validarLogin($usuario, $contraseña);
 
     if ($user) {
-        $_SESSION['usuario'] = $user['usuario']; // Guardamos el usuario en sesión
-        $_SESSION['rol'] = $user['rol']; // Guardamos el rol
+        $_SESSION['usuario'] = [
+            'nombre' => $user['usuario'],
+            'rol' => $user['rol']
+        ];
         header("Location: bienvenida.php"); // Redirigir a bienvenida
         exit();
     } else {
-        echo "Credenciales incorrectas. <a href='login.php'>Volver</a>";
+        $_SESSION['mensaje_exito'] = "Credenciales incorrectas. Intenta nuevamente.";
+        header("Location: login.php"); // Regresar al login con mensaje
+        exit();
     }
 }
 ?>

@@ -1,9 +1,9 @@
 <?php
+session_start();
 require_once 'Empresa.php';
 
 $empresaModel = new Empresa();
 
-// Registro de empresas
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro_empresa'])) {
     $nombre = $_POST['nombre'];
     $nit = $_POST['nit'];
@@ -13,33 +13,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro_empresa'])) {
     $usuario = $_POST['usuario'];
     $contraseña = $_POST['contraseña'];
 
+    // Intentar registrar la empresa
     if ($empresaModel->registrarEmpresa($nombre, $nit, $direccion, $telefono, $correo, $usuario, $contraseña)) {
-        header("Location: login.php");
+        $_SESSION['usuario'] = [
+            'nombre' => $usuario,
+            'rol' => 'empresa',
+            'id' => $empresaModel->obtenerIdPorUsuario($usuario)
+        ];
+        $_SESSION['mensaje_exito'] = "Registro exitoso. ¡Ahora puedes agregar tus ofertas!";
+        header("Location: dashboard_empresa.php");
+        exit();
     } else {
-        echo "Error al registrar la empresa.";
-    }
-}
-
-// Aprobación de empresas (por parte del administrador)
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['aprobar_empresa'])) {
-    $id_empresa = $_POST['id_empresa'];
-    $porcentaje_comision = $_POST['porcentaje_comision'];
-
-    if ($empresaModel->aprobarEmpresa($id_empresa, $porcentaje_comision)) {
-        header("Location: admin_dashboard.php");
-    } else {
-        echo "Error al aprobar la empresa.";
-    }
-}
-
-// Rechazo de empresas
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rechazar_empresa'])) {
-    $id_empresa = $_POST['id_empresa'];
-
-    if ($empresaModel->rechazarEmpresa($id_empresa)) {
-        header("Location: admin_dashboard.php");
-    } else {
-        echo "Error al rechazar la empresa.";
+        $_SESSION['mensaje_error'] = "El NIT ya está registrado. Intenta con otro.";
+        header("Location: registro_empresa.php");
+        exit();
     }
 }
 ?>

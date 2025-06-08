@@ -6,8 +6,7 @@ try {
     $stmt = $pdo->query("SELECT * FROM ofertas WHERE estado = 'disponible'");
     $ofertas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    error_log("Error al cargar ofertas: " . $e->getMessage());
-    $error = "No se pueden cargar las ofertas en este momento.";
+    $error = "Error al cargar ofertas: " . $e->getMessage();
 }
 ?>
 
@@ -16,29 +15,19 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Cuponera SV</title>
+    <title>Compra de Cupones - La Cuponera SV</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a La Cuponera SV</h1>
+        <h1>Compra de Cupones</h1>
         <nav>
-            <?php if (isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])): ?>
-                <form action="logout.php" method="POST" style="display:inline;">
-                    <button type="submit" class="btn">Cerrar Sesión</button>
-                </form>
-                <?php if ($_SESSION['usuario']['rol'] === 'administrador'): ?>
-                    <a href="admin_dashboard.php" class="btn">Panel de Administración</a>
-                <?php elseif ($_SESSION['usuario']['rol'] === 'empresa'): ?>
-                    <a href="dashboard_empresa.php" class="btn">Panel de Empresa</a>
-                <?php else: ?>
-                    <a href="pagina.php" class="btn">Explorar Cupones y Comprar</a>
-                <?php endif; ?>
+            <a href="index.php" class="btn">⬅ Regresar al inicio</a>
+            <?php if (isset($_SESSION['usuario'])): ?>
+                <a href="logout.php" class="btn">Cerrar Sesión</a>
             <?php else: ?>
                 <a href="login.php" class="btn">Iniciar sesión</a>
-                <a href="login_empresa.php" class="btn">Iniciar sesión como Empresa</a>
                 <a href="registro.php" class="btn">Registrarse</a>
-                <a href="registro_empresa.php" class="btn">Registrar Empresa</a>
             <?php endif; ?>
         </nav>
     </header>
@@ -57,6 +46,7 @@ try {
                             <p><strong>Precio Oferta: $<?php echo number_format($oferta['precio_oferta'], 2); ?></strong></p>
                             <p>Fecha límite de canje: <?php echo htmlspecialchars($oferta['fecha_limite_canje']); ?></p>
                             <p><?php echo htmlspecialchars($oferta['descripcion']); ?></p>
+
                             <form action="comprar.php" method="POST">
                                 <input type="hidden" name="oferta_id" value="<?php echo $oferta['id']; ?>">
                                 <button type="submit" class="btn">Comprar</button>

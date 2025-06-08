@@ -15,7 +15,7 @@ session_start();
 
     <?php
     if (isset($_SESSION['mensaje_exito'])) {
-        echo "<p class='mensaje-exito'>{$_SESSION['mensaje_exito']}</p>";
+        echo "<p class='mensaje-exito'>" . htmlspecialchars($_SESSION['mensaje_exito']) . "</p>";
         unset($_SESSION['mensaje_exito']); // Limpiar el mensaje después de mostrarlo
     }
     ?>
@@ -45,10 +45,13 @@ session_start();
         <label for="rol">Rol:</label>
         <select name="rol">
             <option value="cliente">Cliente</option>
-            <option value="empresa">Empresa</option>
+
         </select>
 
         <button type="submit" name="registro">Registrarse</button>
     </form>
+
+    <!-- Botón para regresar al inicio -->
+    <p><a href="index.php" class="btn">⬅ Regresar al inicio</a></p>
 </body>
 </html>
