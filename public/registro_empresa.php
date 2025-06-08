@@ -8,6 +8,7 @@
 </head>
 <body>
     <h2>Registro de Empresa</h2>
+
     <form action="EmpresaController.php" method="POST">
         <label for="nombre">Nombre de empresa:</label>
         <input type="text" name="nombre" required>
@@ -32,5 +33,8 @@
 
         <button type="submit" name="registro_empresa">Registrar Empresa</button>
     </form>
+
+    <!-- Botón para regresar al inicio -->
+    <p><a href="index.php" class="btn">⬅ Regresar al inicio</a></p>
 </body>
 </html>
